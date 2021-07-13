@@ -41,6 +41,7 @@ services:
         gitlab_rails['db_database'] = 'gitlab'
         gitlab_rails['db_username'] = 'gitlab'
         gitlab_rails['db_password'] = 'gitlab'
+        gitlab_rails['gitlab_shell_ssh_port'] = 10022
         gitlab_monitor['enable'] = false
         nginx['listen_port'] = 80
         nginx['listen_https'] = false
@@ -49,6 +50,8 @@ services:
           "X-Forwarded-Ssl" => "on"
         }
       no_proxy: proxy
+    ports:
+      - "10022:22"
     logging:
       options:
         max-size: "10m"
